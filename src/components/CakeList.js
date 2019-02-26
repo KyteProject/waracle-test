@@ -42,7 +42,6 @@ export default class CakeList extends Component {
 	render() {
 		return (
 			<List>
-				<h1>CAKES!</h1>
 				{this.state.cakes.map( ( cake ) => (
 					<li key={cake.id}>
 						<h4>{cake.name}</h4>
