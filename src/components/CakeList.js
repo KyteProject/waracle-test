@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -17,39 +17,46 @@ const List = styled.ul`
 	}
 `;
 
-// S1: List all cakes, showing only the image and name
-export default class CakeList extends Component {
-	constructor( props ) {
-		super( props );
+/**
+ * Fetches cake list array from API and updates component state.
+ * @param {function} setCakes - The title update function.
+ */
+const fetchCakes = async( setCakes ) => {
+	let res;
 
-		this.state = { cakes: [] };
+	try {
+		res = await axios.get( `${process.env.REACT_APP_CAKE_API}` );
+	} catch ( err ) {
+		console.log( `Error has occured: ${err}` );
 	}
 
-	async componentDidMount() {
-		let res;
+	const cakeList = res.data;
 
-		try {
-			res = await axios.get( `${process.env.REACT_APP_CAKE_API}` );
-		} catch ( err ) {
-			console.log( `Error has occured: ${err}` );
-		}
+	setCakes( cakeList );
+};
 
-		const cakes = res.data;
+/**
+ *  List all cakes, showing only the image and name
+ */
+const CakeList = () => {
+	const [ cakes, setCakes ] = useState( [] );
 
-		this.setState( { cakes } );
-	}
+	useEffect( () => {
+		fetchCakes( setCakes );
+	}, [] );
 
-	render() {
-		return (
-			<List>
-				{this.state.cakes.map( ( cake ) => (
-					<li key={cake.id}>
-						<h4>{cake.name}</h4>
-						<img src={cake.imageUrl} alt={cake.name} />
-						<hr />
-					</li>
-				) )}
-			</List>
-		);
-	}
-}
+	return (
+		<List>
+			<p>Submit a cake?</p>
+			{cakes.map( ( cake ) => (
+				<li key={cake.id}>
+					<h4>{cake.name}</h4>
+					<img src={cake.imageUrl} alt={cake.name} />
+					<hr />
+				</li>
+			) )}
+		</List>
+	);
+};
+
+export default CakeList;

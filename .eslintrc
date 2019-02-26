@@ -5,6 +5,7 @@
 		"plugin:react/recommended"
 	],
 	"rules": {
+		"react-hooks/rules-of-hooks": "error",
 		"react/prop-types": 0,
 		"react/require-default-props": 0,
 		"react/jsx-uses-vars": [
@@ -174,7 +175,7 @@
 			"always"
 		],
 		"one-var": [
-			2,
+			0,
 			"consecutive"
 		],
 		"operator-linebreak": [
@@ -245,7 +246,8 @@
 	},
 	"plugins": [
 		"react",
-		"import"
+		"import",
+		"react-hooks"
 	],
 	"parser": "babel-eslint",
 	"settings": {
