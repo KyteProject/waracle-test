@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useGlobal } from 'reactn';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -39,7 +40,15 @@ const fetchCakes = async( setCakes ) => {
  *  List all cakes, showing only the image and name
  */
 const CakeList = () => {
-	const [ cakes, setCakes ] = useState( [] );
+	const [ cakes, setCakes ] = useState( [] ),
+		[ modalSate, setModal ] = useGlobal( 'globalModalState' );
+
+	const openModal = () => {
+			setModal( true );
+		},
+		closeModal = () => {
+			setModal( false );
+		};
 
 	useEffect( () => {
 		fetchCakes( setCakes );
@@ -47,11 +56,14 @@ const CakeList = () => {
 
 	return (
 		<List>
-			<p>Submit a cake?</p>
 			{cakes.map( ( cake ) => (
 				<li key={cake.id}>
 					<h4>{cake.name}</h4>
-					<img src={cake.imageUrl} alt={cake.name} />
+					<img src={cake.imageUrl} alt={cake.name} onClick={openModal} />
+					<Modal isOpen={modalSate} onRequestClose={closeModal} contentLabel="Modal">
+						<button onClick={closeModal}>Close</button>
+						<CakeDetails id={cake.id} />
+					</Modal>
 					<hr />
 				</li>
 			) )}

@@ -1,18 +1,24 @@
 import React from 'react';
-import CakeList from './components/CakeList';
+import { Router } from '@reach/router';
+import { setGlobal } from 'reactn';
 import styled from 'styled-components';
-import CakeAdd from './components/CakeAdd';
+import Home from './views/Home';
 
 const Title = styled.h1`
 		text-align: center;
 		text-decoration: underline;
 	`,
 	App = () => {
+		setGlobal( {
+			globalModalState: false
+		} );
+
 		return (
 			<React.Fragment>
 				<Title>CAKES!</Title>
-				<CakeAdd />
-				<CakeList />
+				<Router>
+					<Home path="/" />
+				</Router>
 			</React.Fragment>
 		);
 	};

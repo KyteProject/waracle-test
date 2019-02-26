@@ -16,6 +16,7 @@ const CakeAdd = () => {
 
 	const handleSubmit = ( event ) => {
 		event.preventDefault();
+
 		const cake = {
 			name,
 			comment,
