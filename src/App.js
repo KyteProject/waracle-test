@@ -11,8 +11,8 @@ const Title = styled.h1`
 		return (
 			<React.Fragment>
 				<Title>CAKES!</Title>
-				{/* <CakeList /> */}
 				<CakeAdd />
+				<CakeList />
 			</React.Fragment>
 		);
 	};
