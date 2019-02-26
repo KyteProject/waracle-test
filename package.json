@@ -1,25 +1,35 @@
 {
-  "name": "waracle-test",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+	"name": "waracle-test",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"axios": "^0.18.0",
+		"react": "^16.8.3",
+		"react-dom": "^16.8.3",
+		"react-router-dom": "^4.3.1",
+		"react-scripts": "2.1.5"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.26.0",
+		"babel-core": "^6.26.3",
+		"babel-eslint": "^10.0.1",
+		"babel-plugin-module-resolver": "^3.2.0",
+		"babel-preset-env": "^1.7.0",
+		"eslint": "^5.14.1",
+		"eslint-plugin-import": "^2.16.0",
+		"eslint-plugin-react": "^7.12.4",
+		"nodemon": "^1.18.10"
+	},
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not ie <= 11",
+		"not op_mini all"
+	]
 }
