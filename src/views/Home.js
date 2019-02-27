@@ -4,6 +4,9 @@ import { useGlobal } from 'reactn';
 import CakeList from '../components/CakeList';
 import CakeAdd from '../components/CakeAdd';
 
+/**
+ *  Home view: displays list of cakes and option to add one.
+ */
 const Home = () => {
 	const [ modalSate, setModal ] = useGlobal( 'globalModalState' );
 
