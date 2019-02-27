@@ -1,11 +1,10 @@
-import React from 'react';
-import { useGlobal } from 'reactn';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
-import CakeAdd from '../components/CakeAdd';
 import CakeList from '../components/CakeList';
+import CakeAdd from '../components/CakeAdd';
 
 const Home = () => {
-	const [ modalSate, setModal ] = useGlobal( 'globalModalState' );
+	const [ modalSate, setModal ] = useState( false );
 
 	const openModal = () => {
 			setModal( true );
@@ -18,7 +17,7 @@ const Home = () => {
 		<React.Fragment>
 			<button onClick={openModal}>Submit a cake</button>
 			<CakeList />
-			<Modal isOpen={modalSate} onRequestClose={closeModal} contentLabel="Modal">
+			<Modal isOpen={modalSate} onRequestClose={closeModal} contentLabel="Add cake">
 				<button onClick={closeModal}>Close</button>
 				<h2>Add a new cake!</h2>
 				<CakeAdd />

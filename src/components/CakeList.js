@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useGlobal } from 'reactn';
 import axios from 'axios';
 import styled from 'styled-components';
+import Modal from 'react-modal';
 
 const List = styled.ul`
 	position: absolute;
@@ -41,13 +41,13 @@ const fetchCakes = async( setCakes ) => {
  */
 const CakeList = () => {
 	const [ cakes, setCakes ] = useState( [] ),
-		[ modalSate, setModal ] = useGlobal( 'globalModalState' );
+		[ modalSate, setModal ] = useState( '' );
 
-	const openModal = () => {
-			setModal( true );
+	const openModal = ( id ) => {
+			setModal( `${id}` );
 		},
 		closeModal = () => {
-			setModal( false );
+			setModal( '' );
 		};
 
 	useEffect( () => {
@@ -59,12 +59,15 @@ const CakeList = () => {
 			{cakes.map( ( cake ) => (
 				<li key={cake.id}>
 					<h4>{cake.name}</h4>
-					<img src={cake.imageUrl} alt={cake.name} onClick={openModal} />
-					<Modal isOpen={modalSate} onRequestClose={closeModal} contentLabel="Modal">
-						<button onClick={closeModal}>Close</button>
-						<CakeDetails id={cake.id} />
-					</Modal>
+					<img src={cake.imageUrl} alt={cake.name} onClick={() => openModal( `${cake.id}` )} />
 					<hr />
+					<Modal isOpen={modalSate === cake.id} onRequestClose={closeModal} contentLabel="Cake Details">
+						<button onClick={closeModal}>Close</button>
+						<p>Name: {cake.name}</p>
+						<img src={cake.imageUrl} alt={cake.name} height="250" width="250" />
+						<p>Comment: {cake.comment}</p>
+						<p>Yum Factor: {cake.yumFactor}</p>
+					</Modal>
 				</li>
 			) )}
 		</List>

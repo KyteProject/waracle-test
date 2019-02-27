@@ -1,7 +1,3 @@
-// I should be able add a cake from the list of all cakes view
-// I should be taken to a view where I am able to specify the name a comment and
-// a yum factor between 1 and 5.
-// I should be returned back to the list of cakes after submitting.
 import React, { useState } from 'react';
 import axios from 'axios';
 
