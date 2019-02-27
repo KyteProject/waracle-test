@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useGlobal } from 'reactn';
 import axios from 'axios';
 
 /**
@@ -8,7 +9,9 @@ const CakeAdd = () => {
 	const [ name, setName ] = useState( '' ),
 		[ comment, setComment ] = useState( '' ),
 		[ yumFactor, setYumFactor ] = useState( '' ),
-		[ imageUrl, setImageUrl ] = useState( '' );
+		[ imageUrl, setImageUrl ] = useState( '' ),
+		[ modalSate, setModal ] = useGlobal( 'globalModalState' ),
+		[ submit, setSubmit ] = useGlobal( 'cakeSubmit' );
 
 	const handleSubmit = ( event ) => {
 		event.preventDefault();
@@ -25,6 +28,9 @@ const CakeAdd = () => {
 		} catch ( err ) {
 			console.log( `Error has occured: ${err}` );
 		}
+
+		setSubmit( true );
+		setModal( false );
 	};
 
 	return (

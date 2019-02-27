@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useGlobal } from 'reactn';
 import axios from 'axios';
 import styled from 'styled-components';
 import Modal from 'react-modal';
@@ -41,7 +42,8 @@ const fetchCakes = async( setCakes ) => {
  */
 const CakeList = () => {
 	const [ cakes, setCakes ] = useState( [] ),
-		[ modalSate, setModal ] = useState( '' );
+		[ modalSate, setModal ] = useGlobal( 'globalModalState' ),
+		[ submit, setSubmit ] = useGlobal( 'cakeSubmit' );
 
 	const openModal = ( id ) => {
 			setModal( `${id}` );
@@ -50,9 +52,13 @@ const CakeList = () => {
 			setModal( '' );
 		};
 
-	useEffect( () => {
-		fetchCakes( setCakes );
-	}, [] );
+	useEffect(
+		() => {
+			fetchCakes( setCakes );
+			setSubmit( false );
+		},
+		[ submit ]
+	);
 
 	return (
 		<List>
