@@ -5,7 +5,7 @@
 	"homepage": "https://kyteproject.github.io/waracle-test",
 	"dependencies": {
 		"@reach/router": "^1.2.1",
-		"axios": "^0.18.0",
+		"axios": "^0.21.1",
 		"react": "^16.8.3",
 		"react-dom": "^16.8.3",
 		"react-modal": "^3.8.1",
